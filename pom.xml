@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>night.votes</groupId>
+    <artifactId>NightVote</artifactId>
+    <!-- Make sure this version matches your plugin.yml if you care about consistency -->
+    <version>1.0.1-SNAPSHOT</version> 
+    
+    <name>NightVote</name>
+    <url>http://www.example.com</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source> <!-- Changed from 21 to 17 for broader compatibility, adjust if needed -->
+        <maven.compiler.target>17</maven.compiler.target> <!-- Changed from 21 to 17 -->
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <!-- Paper API repository might be needed if you use Paper-specific APIs -->
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.20.4-R0.1-SNAPSHOT</version> <!-- Or your target server version -->
+            <scope>provided</scope>
+        </dependency>
+        <!-- If you are using Paper, you might prefer the paper-api -->
+        <!-- 
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.20.4-R0.1-SNAPSHOT</version> 
+            <scope>provided</scope>
+        </dependency>
+        -->
+    </dependencies>
+
+    <build>
+        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering> <!-- Optional: if you want to replace placeholders like ${project.version} in your yml files -->
+                <includes>
+                    <include>plugin.yml</include>
+                    <include>config.yml</include>
+                    <!-- Or use a wildcard if you prefer and have multiple yml files -->
+                    <!-- <include>*.yml</include> -->
+                </includes>
+            </resource>
+        </resources>
+    </build>
+</project>

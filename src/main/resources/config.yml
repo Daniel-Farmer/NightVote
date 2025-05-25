@@ -1,0 +1,55 @@
+# NightVote Plugin Configuration
+
+# Settings for the night skip vote
+vote:
+  duration_seconds: 30           # How long players have to vote (in seconds)
+  min_players_to_start_auto: 1   # Minimum online players in the specific world required to initiate an automatic vote
+  min_players_to_start_manual: 1 # Minimum online players in the specific world required for /nv start
+  required_yes_percentage: 0.51  # Percentage of YES votes from ELIGIBLE voters needed to pass (0.51 means >50%)
+  night_start_tick: 12550        # Minecraft time when an automatic vote can be triggered (early evening)
+  day_start_tick: 1000           # Minecraft time to set if vote passes (morning)
+  # If true, only one automatic vote attempt per world per night cycle.
+  # This resets when the world's time moves out of the night phase.
+  attempt_once_per_night_cycle_per_world: true
+
+# Worlds where automatic night skipping votes are enabled.
+# The vote will trigger in the first world in this list that meets the time criteria,
+# provided no other vote is currently active.
+# For manual /nv start [world], the world must be an overworld.
+enabled_worlds_for_auto_vote:
+  - "world"  # Default Overworld name. Add other Overworld names if you have them.
+  # - "my_other_overworld"
+
+# Messages (supports & color codes and #HEX codes via Utils.colorize)
+# Placeholders: %world%, %time%, %player%, %vote%, %yes_votes%, %no_votes%, %eligible_voters%, %reason%, %min_players%
+messages:
+  prefix: "&6[NightVote] "
+  vote_started: "&eA vote has started to skip the night in world '%world%'!"
+  vote_instructions: "&eType &aY&e or &cN&e in chat to vote. (&7%time% seconds remaining&7)"
+  player_voted: "&b%player%&e has voted %vote%&e."
+  already_voted: "&cYou have already voted."
+  no_active_vote: "&cThere is no active vote."
+  not_eligible_world: "&cYou are not in the world where the vote is taking place (%world%)."
+  not_eligible_general: "&cYou are not eligible for this vote (e.g. joined after it started)."
+  vote_finished: "&eVote finished! Results: &a%yes_votes% Yes&e, &c%no_votes% No&e. (Eligible: %eligible_voters% in %world%)"
+  vote_passed: "&aVote passed! Skipping to day time in %world%."
+  vote_failed: "&cVote failed. Night will continue in %world%."
+  vote_cancelled_reason: "&eVote in %world% has been cancelled. Reason: %reason%"
+  vote_cancelled_plugin_disabled: "&eVote in %world% has been cancelled: Plugin disabled."
+  all_eligible_left: "&eAll eligible players have left. Vote in %world% cancelled."
+  player_left_vote_removed: "&b%player%&e left %world%, their vote has been removed."
+  vote_in_progress_join_world: "&eA vote to skip the night is currently in progress in your world (%world%)!"
+  vote_in_progress_join_instructions: "&eType &aY&e or &cN&e in chat to vote (if eligible)."
+  error_world_not_found: "&cError: World '%world%' not found."
+  error_world_not_overworld: "&cError: Night skipping is only supported in Overworlds. '%world%' is not an Overworld."
+  error_changing_time: "&cError: Could not change time in %world% (world issue or not an overworld)."
+  reload_success: "&aNightVote configuration reloaded."
+  no_permission: "&cYou do not have permission to perform this action."
+  command_usage_main: "&cUsage: /nv <start|cancel|reload>"
+  command_usage_start: "&cUsage: /nv start [world_name]"
+  vote_start_manual: "&eA night skip vote has been manually started in %world% by %player%!"
+  vote_cancel_manual: "&eVote in %world% has been manually cancelled by %player%!"
+  vote_already_active_in_world: "&cThere is already a vote active in %world%."
+  vote_already_active_elsewhere: "&cAnother vote is already active in %other_world%. Please wait."
+  not_enough_players_manual: "&cNot enough players online in %world% to start a vote manually (Min: %min_players%, Online: %online_players%)."
+  min_players_not_met_for_auto: "&7Not enough players in %world% for auto night vote (Need: %min_players%, Have: %online_players%)."

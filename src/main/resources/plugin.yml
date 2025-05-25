@@ -1,0 +1,39 @@
+main: night.votes.NightVote
+version: 1.0.1-SNAPSHOT
+name: NightVote
+author: Daniel E Farmer
+api-version: 1.13 # Assuming you want to stick with 1.13+ for broader compatibility, if using newer API features update this.
+description: Allows players to vote to skip the night.
+
+commands:
+  nightvote:
+    description: Main command for NightVote plugin.
+    aliases: [nv]
+    usage: /<command> <start|cancel|reload> [world_name]
+    permission: nightvote.admin # Base permission for using the command itself, subcommands have specific perms
+
+permissions:
+  nightvote.*:
+    description: Grants all NightVote permissions.
+    children:
+      nightvote.vote: true
+      nightvote.admin: true
+  nightvote.admin:
+    description: Grants all administrative NightVote permissions.
+    default: op
+    children:
+      nightvote.start: true
+      nightvote.cancel: true
+      nightvote.reload: true
+  nightvote.vote:
+    description: Allows a player to participate in votes.
+    default: true
+  nightvote.start:
+    description: Allows usage of /nv start.
+    default: op
+  nightvote.cancel:
+    description: Allows usage of /nv cancel.
+    default: op
+  nightvote.reload:
+    description: Allows usage of /nv reload.
+    default: op
